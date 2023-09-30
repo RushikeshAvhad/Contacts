@@ -3,13 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.ContactsPage"
              Title="Contacts">
-    
+
     <ListView 
         x:Name="listContacts"
         BackgroundColor="Transparent"
         SeparatorColor="Silver"
-        SeparatorVisibility="Default">
-        
+        SeparatorVisibility="Default"
+        RowHeight="65">
+        <ListView.ItemTemplate>
+            <DataTemplate >
+                <TextCell 
+                    Text="{Binding Name}" 
+                    Detail="{Binding Email}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
     
 </ContentPage>

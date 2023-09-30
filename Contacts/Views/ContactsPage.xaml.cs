@@ -6,14 +6,20 @@ public partial class ContactsPage : ContentPage
 	{
 		InitializeComponent();
 
-		List<string> contacts = new List<string>
+		List<Contact> contacts = new List<Contact>()
 		{
-			"John Doe",
-			"Jane Doe",
-			"Tom Hanks",
-			"Frank Liu"
+			new Contact {Name = "John Doe", Email="johnDoe@gmail.com"},
+			new Contact {Name = "Jane Doe", Email="janeDoe@gmail.com"},
+			new Contact {Name = "Tom Hanks", Email="tomHanks@gmail.com"},
+			new Contact {Name = "Frank Liu", Email="frankliu@gmail.com"}
 		};
 
 		listContacts.ItemsSource = contacts;
+	}
+
+	public class Contact
+	{
+		public string Name { get; set; }
+		public string Email { get; set; }
 	}
 }
