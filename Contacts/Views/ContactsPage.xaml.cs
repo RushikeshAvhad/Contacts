@@ -23,12 +23,18 @@ public partial class ContactsPage : ContentPage
 		public string Email { get; set; }
 	}
 
-    private void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private async void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-		//	Logic
+		if (listContacts.SelectedItem != null)
+		{
+			await Shell.Current.GoToAsync(nameof(EditContactPage));
+		}
+    }
 
-		DisplayAlert("Message", "Item Selected Event in MAUI List View", "OK");
-
-		listContacts.SelectedItem = null;	// Will not focus on selected Item.
+    private void listContacts_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+		/* When we click on item ItemSelected event triggers
+		 * If we click on selected item ItemSelected event will not trigger again & again 
+		 * but ItemTapped event trigger every time we tap on Item */
     }
 }
