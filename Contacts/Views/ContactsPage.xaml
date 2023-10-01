@@ -9,7 +9,8 @@
         BackgroundColor="Transparent"
         SeparatorColor="Silver"
         SeparatorVisibility="Default"
-        RowHeight="65">
+        RowHeight="65"
+        ItemSelected="listContacts_ItemSelected">
         <ListView.ItemTemplate>
             <DataTemplate >
                 <TextCell 

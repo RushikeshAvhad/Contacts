@@ -22,4 +22,13 @@ public partial class ContactsPage : ContentPage
 		public string Name { get; set; }
 		public string Email { get; set; }
 	}
+
+    private void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+		//	Logic
+
+		DisplayAlert("Message", "Item Selected Event in MAUI List View", "OK");
+
+		listContacts.SelectedItem = null;	// Will not focus on selected Item.
+    }
 }
