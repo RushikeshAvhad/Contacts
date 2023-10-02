@@ -3,38 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.EditContactPage"
              Title="Edit Contact">
-    <!--<VerticalStackLayout>
-        <Label 
-            x:Name="lblName"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Button
-            x:Name="btnCancel"
-            Text="Cancel"
-            Clicked="btnCancel_Clicked" />
-    </VerticalStackLayout>-->
+    
+    <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
 
-    <VerticalStackLayout Spacing="10">
-        <Label Text="Test Label" HorizontalOptions="Start" BackgroundColor="Gray"/>
-        <Label Text="Test Label" HorizontalOptions="Center" BackgroundColor="Gray"/>
-        <Label Text="Test Label" HorizontalOptions="End" BackgroundColor="Gray"/>
-        <Label Text="Test Label" HorizontalOptions="Fill" BackgroundColor="Gray"/>
-        <BoxView Color="Aqua" HeightRequest="50" WidthRequest="100" HorizontalOptions="Start"></BoxView>
-        <BoxView Color="Blue" HeightRequest="50" WidthRequest="100" HorizontalOptions="Center"></BoxView>
-        <BoxView Color="Red" HeightRequest="50" WidthRequest="100" HorizontalOptions="End"></BoxView>
-        <BoxView Color="Yellow" HeightRequest="50" WidthRequest="100"></BoxView>
-        <HorizontalStackLayout Spacing="5">
-            <Label Text="Name:" VerticalOptions="Center"></Label>
-            <Entry VerticalOptions="Center"></Entry>
-        </HorizontalStackLayout>
+        <Frame Padding="10, 2 ,10, 2">
+            <HorizontalStackLayout>
+                <Label Text="Name" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Entry VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame Padding="10, 2 ,10, 2">
+            <HorizontalStackLayout>
+                <Label Text="Email" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Entry VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame Padding="10, 2 ,10, 2">
+            <HorizontalStackLayout>
+                <Label Text="Phone" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Entry VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame Padding="10, 2 ,10, 2">
+            <HorizontalStackLayout>
+                <Label Text="Address" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Entry VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
+
     </VerticalStackLayout>
-
-    <!--<HorizontalStackLayout Spacing="10">
-        <BoxView Color="Aqua" HeightRequest="100" WidthRequest="50" VerticalOptions="Start"/>
-        <BoxView Color="Blue" HeightRequest="100" WidthRequest="50" VerticalOptions="Center"/>
-        <BoxView Color="Red" HeightRequest="100" WidthRequest="50" VerticalOptions="End"/>
-        <BoxView Color="Yellow" HeightRequest="100" WidthRequest="50"/>
-    </HorizontalStackLayout>-->
     
 </ContentPage>
