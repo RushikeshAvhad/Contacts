@@ -22,7 +22,11 @@
                 <DataTemplate >
                     <TextCell 
                         Text="{Binding Name}" 
-                        Detail="{Binding Email}"/>
+                        Detail="{Binding Email}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete"></MenuItem>
+                        </TextCell.ContextActions>
+                    </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
