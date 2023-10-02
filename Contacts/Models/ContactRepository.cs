@@ -38,7 +38,7 @@ namespace Contacts.Models
 
         public static void UpdateContact(int contactId, Contact contact)
         {
-            if (contactId == contact.ContactId) return;
+            if (contactId != contact.ContactId) return;
 
             var contactToUpdate = _contacts.FirstOrDefault(x => x.ContactId == contactId);
             if (contactToUpdate != null)
