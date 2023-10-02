@@ -24,7 +24,12 @@
                         Text="{Binding Name}" 
                         Detail="{Binding Email}">
                         <TextCell.ContextActions>
-                            <MenuItem Text="Delete"></MenuItem>
+                            <MenuItem 
+                                Text="Delete" 
+                                IsDestructive="True"
+                                Clicked="Delete_Clicked"
+                                CommandParameter="{Binding .}">                                
+                            </MenuItem>
                         </TextCell.ContextActions>
                     </TextCell>
                 </DataTemplate>
