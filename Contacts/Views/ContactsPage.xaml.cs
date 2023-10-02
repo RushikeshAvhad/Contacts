@@ -6,28 +6,31 @@ namespace Contacts.Views;
 
 public partial class ContactsPage : ContentPage
 {
-	public ContactsPage()
-	{
-		InitializeComponent();
-	}
+    public ContactsPage()
+    {
+        InitializeComponent();
+    }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
+        SearchBar.Text = string.Empty;
+
         LoadContacts();
     }
 
     private async void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-		if (listContacts.SelectedItem != null)
-		{
-			await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)listContacts.SelectedItem).ContactId}");
-		}
+        if (listContacts.SelectedItem != null)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)listContacts.SelectedItem).ContactId}");
+        }
     }
 
     private void listContacts_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-		listContacts.SelectedItem = null;
+        listContacts.SelectedItem = null;
     }
 
     private void btnAdd_Clicked(object sender, EventArgs e)
@@ -47,6 +50,12 @@ public partial class ContactsPage : ContentPage
     private void LoadContacts()
     {
         var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+        listContacts.ItemsSource = contacts;
+    }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
         listContacts.ItemsSource = contacts;
     }
 }
