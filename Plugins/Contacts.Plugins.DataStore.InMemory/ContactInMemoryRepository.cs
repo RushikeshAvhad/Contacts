@@ -18,6 +18,15 @@ namespace Contacts.Plugins.DataStore.InMemory
             };
         }
 
+        public Task AddContactAsync(Contact contact)
+        {
+            var maxId = _contacts.Max(x => x.ContactId);
+            contact.ContactId = maxId + 1;
+            _contacts.Add(contact);
+
+            return Task.CompletedTask;
+        }
+
         public Task<Contact> GetContactByIdAsync(int contactId)
         {
             var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
