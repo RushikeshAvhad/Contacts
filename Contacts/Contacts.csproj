@@ -54,6 +54,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Contacts.CoreBusiness\Contacts.CoreBusiness.csproj" />
+	  <ProjectReference Include="..\Contacts.UseCases\Contacts.UseCases.csproj" />
+	  <ProjectReference Include="..\Plugins\Contacts.Plugins.DataStore.InMemory\Contacts.Plugins.DataStore.InMemory.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\AddContactPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

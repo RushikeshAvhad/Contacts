@@ -20,6 +20,11 @@ namespace Contacts.Plugins.DataStore.InMemory
 
         public Task<List<Contact>> GetContactsAsync(string filterText)
         {
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                return Task.FromResult(_contacts);
+            }
+
             var contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.Name) && x.Name.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToList();
 
             if (contacts == null || contacts.Count <= 0)
