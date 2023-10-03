@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Contacts.Views.TestPage"
+             Title="TestPage">
+    
+    <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
+
+        <Entry x:Name="entryName" Placeholder="Name" />
+        <Entry x:Name="entryEmail" Placeholder="Email" />
+        <Entry x:Name="entryPhone" Placeholder="Phone" />
+        <Entry x:Name="entryAddress" Placeholder="Address" />
+        <Button x:Name="btnSave" Text="Save" Clicked="btnSave_Clicked" />
+
+    </VerticalStackLayout>
+    
+</ContentPage>
