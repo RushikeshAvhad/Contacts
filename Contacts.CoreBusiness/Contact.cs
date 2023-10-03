@@ -1,6 +1,5 @@
 ﻿namespace Contacts.CoreBusiness
 {
-    // All the code in this file is included in all platforms.
     public class Contact
     {
         public int ContactId { get; set; }

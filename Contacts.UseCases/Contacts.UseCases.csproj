@@ -17,4 +17,8 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Contacts.CoreBusiness\Contacts.CoreBusiness.csproj" />
+	</ItemGroup>
+
 </Project>
