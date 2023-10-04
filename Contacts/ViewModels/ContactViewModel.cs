@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Models;
 using Contacts.UseCases.Interfaces;
+using Contacts.Views_MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Contacts.ViewModels
     {
         private Contact _contact;
         private readonly IViewContactUseCase _viewContactUseCase;
+        private readonly IEditContactUseCase _editContactUseCase;
 
         public Contact Contact
         {
@@ -25,10 +27,11 @@ namespace Contacts.ViewModels
             }
         }
 
-        public ContactViewModel(IViewContactUseCase viewContactUseCase)
+        public ContactViewModel(IViewContactUseCase viewContactUseCase, IEditContactUseCase editContactUseCase)
         {
             Contact = new Contact();
             _viewContactUseCase = viewContactUseCase;
+            _editContactUseCase = editContactUseCase;
         }
 
         public async Task LoadContact(int contactId)
@@ -36,10 +39,17 @@ namespace Contacts.ViewModels
             Contact = await _viewContactUseCase.ExecuteAsync(contactId);
         }
 
-        //[RelayCommand]
-        //public void SaveContact()
-        //{
-        //    ContactRepository.UpdateContact(this.Contact.ContactId, this.Contact);
-        //}
+        [RelayCommand]
+        public async Task EditContact()
+        {
+            await _editContactUseCase.ExecuteAsync(_contact.ContactId, _contact);
+            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+        }
+
+        [RelayCommand]
+        public async Task BackToContacts()
+        {
+            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+        }
     }
 }

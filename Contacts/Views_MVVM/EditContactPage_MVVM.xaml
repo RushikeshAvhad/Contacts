@@ -5,10 +5,10 @@
              x:Class="Contacts.Views_MVVM.EditContactPage_MVVM"
              Title="Edit Contact">
 
-    <VerticalStackLayout>
+    <Grid>
         <controls:ContactControl_MVVM
             BindingContext="{Binding .}">
         </controls:ContactControl_MVVM>
-    </VerticalStackLayout>
+    </Grid>
     
 </ContentPage>
