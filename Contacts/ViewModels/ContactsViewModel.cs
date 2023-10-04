@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.UseCases.Interfaces;
+using Contacts.Views_MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,6 +47,12 @@ namespace Contacts.ViewModels
         {
             await _deleteContactUseCase.ExecuteAsync(contactId);
             await LoadContactsAsync();
+        }
+
+        [RelayCommand]
+        public async Task GotoEditContact(int contactId)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditContactPage_MVVM)}?Id={contactId}");
         }
     }
 }

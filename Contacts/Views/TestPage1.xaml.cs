@@ -4,20 +4,20 @@ namespace Contacts.Views;
 
 public partial class TestPage1 : ContentPage
 {
-	private ContactViewModel _viewModel;
+	//private ContactViewModel _viewModel;
 
-	public TestPage1()
-	{
-		InitializeComponent();
+	//public TestPage1()
+	//{
+	//	InitializeComponent();
 
-		_viewModel = new ContactViewModel();
-		BindingContext = _viewModel;
-	}
+	//	_viewModel = new ContactViewModel();
+	//	BindingContext = _viewModel;
+	//}
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
+ //   protected override void OnAppearing()
+ //   {
+ //       base.OnAppearing();
 
-		_viewModel.LoadContact(1);
-    }
+	//	_viewModel.LoadContact(1);
+ //   }
 }

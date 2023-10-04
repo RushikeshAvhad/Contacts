@@ -8,11 +8,11 @@
 
     <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
 
-        <Entry Placeholder="Name" Text="{Binding Contact.Name}"/>
+        <!--<Entry Placeholder="Name" Text="{Binding Contact.Name}"/>
         <Entry Placeholder="Email" Text="{Binding Contact.Email}"/>
         <Entry Placeholder="Phone" Text="{Binding Contact.Phone}"/>
         <Entry Placeholder="Address" Text="{Binding Contact.Address}"/>
-        <Button Text="Save" Command="{Binding SaveContactCommand}"/>
+        <Button Text="Save" Command="{Binding SaveContactCommand}"/>-->
 
     </VerticalStackLayout>
     

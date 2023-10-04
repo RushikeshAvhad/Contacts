@@ -37,12 +37,14 @@ namespace Contacts
             builder.Services.AddTransient<IDeleteContactUseCase, DeleteContactUseCase>();
             
             builder.Services.AddSingleton<ContactsViewModel>();
+            builder.Services.AddSingleton<ContactViewModel>();
 
             builder.Services.AddSingleton<ContactsPage>();
             builder.Services.AddSingleton<EditContactPage>();
             builder.Services.AddSingleton<AddContactPage>();
 
             builder.Services.AddSingleton<Contacts_MVVM_Page>();
+            builder.Services.AddSingleton<EditContactPage_MVVM>();
 
             return builder.Build();
         }
