@@ -7,6 +7,7 @@ using Contacts.ViewModels;
 using Contacts.Views;
 using Contacts.Views_MVVM;
 using Microsoft.Extensions.Logging;
+using Contacts.Plugins.DataStore.SQLLite;
 
 namespace Contacts
 {
@@ -29,7 +30,8 @@ namespace Contacts
         builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
+            // builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
+            builder.Services.AddSingleton<IContactRepository, ContactSQLiteRepository>();
             builder.Services.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>();
             builder.Services.AddSingleton<IViewContactUseCase, ViewContactUseCase>();
             builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();
