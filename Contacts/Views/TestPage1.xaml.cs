@@ -9,7 +9,15 @@ public partial class TestPage1 : ContentPage
 	public TestPage1()
 	{
 		InitializeComponent();
+
 		_viewModel = new ContactViewModel();
 		BindingContext = _viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+		_viewModel.LoadContact(1);
+    }
 }

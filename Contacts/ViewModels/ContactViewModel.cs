@@ -12,11 +12,24 @@ namespace Contacts.ViewModels
 {
     public partial class ContactViewModel : ObservableObject
     {
-        public Contact Contact { get; set; }
+        private Contact _contact;
+        public Contact Contact
+        {
+            get => _contact;
+            set
+            {
+                SetProperty(ref _contact, value);
+            }
+        }
 
         public ContactViewModel()
         {
-            Contact = ContactRepository.GetContactById(1);
+            Contact = new Contact();
+        }
+
+        public void LoadContact(int contactId)
+        {
+            Contact = ContactRepository.GetContactById(contactId);
         }
 
         [RelayCommand]
