@@ -19,6 +19,19 @@ namespace Contacts.ViewModels
 
         public ObservableCollection<Contact> Contacts { get; set; }
 
+        private string filterText;
+
+        public string FilterText
+        {
+            get { return filterText; }
+            set 
+            { 
+                filterText = value;
+                LoadContactsAsync(filterText);
+            }
+        }
+
+
         public ContactsViewModel(
             IViewContactsUseCase viewContactsUseCase,
             IDeleteContactUseCase deleteContactUseCase)
@@ -28,11 +41,11 @@ namespace Contacts.ViewModels
             Contacts = new ObservableCollection<Contact>();
         }
 
-        public async Task LoadContactsAsync()
+        public async Task LoadContactsAsync(string filterText = null)
         {
             Contacts.Clear();
 
-            var contacts = await _viewContactsUseCase.ExecuteAsync(null);
+            var contacts = await _viewContactsUseCase.ExecuteAsync(filterText);
             if (contacts != null && contacts.Count > 0)
             {
                 foreach (var contact in contacts)
