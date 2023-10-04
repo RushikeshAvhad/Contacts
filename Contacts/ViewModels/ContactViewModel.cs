@@ -28,6 +28,10 @@ namespace Contacts.ViewModels
             }
         }
 
+        public bool IsNameProvided { get; set; }
+        public bool IsEmailProvided { get; set; }
+        public bool IsEmailFormatValid { get; set; }
+
         public ContactViewModel(
             IViewContactUseCase viewContactUseCase,
             IEditContactUseCase editContactUseCase,
@@ -47,21 +51,50 @@ namespace Contacts.ViewModels
         [RelayCommand]
         public async Task EditContact()
         {
-            await _editContactUseCase.ExecuteAsync(_contact.ContactId, _contact);
-            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+            if (await ValidateContact())
+            {
+                await _editContactUseCase.ExecuteAsync(_contact.ContactId, _contact);
+                await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+            }
         }
 
         [RelayCommand]
         public async Task AddContact()
         {
-            await _addContactUseCase.ExecuteAsync(_contact);
-            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+            if (await ValidateContact())
+            {
+                await _addContactUseCase.ExecuteAsync(_contact);
+                await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+            }
         }
 
         [RelayCommand]
         public async Task BackToContacts()
         {
             await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+        }
+
+        private async Task<bool> ValidateContact()
+        {
+            if (!IsNameProvided)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Name is required", "Ok");
+                return false;
+            }
+
+            if (!IsEmailProvided)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Emial is required", "Ok");
+                return false;
+            }
+
+            if (!IsEmailFormatValid)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Email format is incorrect", "Ok");
+                return false;
+            }
+
+            return true;
         }
     }
 }
