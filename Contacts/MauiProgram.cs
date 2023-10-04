@@ -3,7 +3,9 @@ using Contacts.Plugins.DataStore.InMemory;
 using Contacts.UseCases;
 using Contacts.UseCases.Interfaces;
 using Contacts.UseCases.PluginInterfaces;
+using Contacts.ViewModels;
 using Contacts.Views;
+using Contacts.Views_MVVM;
 using Microsoft.Extensions.Logging;
 
 namespace Contacts
@@ -33,10 +35,14 @@ namespace Contacts
             builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();
             builder.Services.AddTransient<IAddContactUseCase, AddContactUseCase>();
             builder.Services.AddTransient<IDeleteContactUseCase, DeleteContactUseCase>();
+            
+            builder.Services.AddSingleton<ContactsViewModel>();
 
             builder.Services.AddSingleton<ContactsPage>();
             builder.Services.AddSingleton<EditContactPage>();
             builder.Services.AddSingleton<AddContactPage>();
+
+            builder.Services.AddSingleton<Contacts_MVVM_Page>();
 
             return builder.Build();
         }
