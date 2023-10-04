@@ -45,6 +45,7 @@ namespace Contacts
 
             builder.Services.AddSingleton<Contacts_MVVM_Page>();
             builder.Services.AddSingleton<EditContactPage_MVVM>();
+            builder.Services.AddSingleton<AddContactPage_MVVM>();
 
             return builder.Build();
         }

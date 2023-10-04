@@ -57,10 +57,10 @@
         </CollectionView>
 
         <Button
-        Grid.Row="2"
-        Grid.Column="0"
-        x:Name="btnAdd"
-        Text="Add Contact" />
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="Add Contact"
+            Command="{Binding GotoAddContactCommand}"/>
         
     </Grid>
     
