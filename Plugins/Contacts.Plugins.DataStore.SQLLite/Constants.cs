@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contacts.Plugins.DataStore.SQLLite
 {
-    public class Constant
+    public class Constants
     {
         public const string DatabaseFileName = "ContactsSQLite.db3";
 

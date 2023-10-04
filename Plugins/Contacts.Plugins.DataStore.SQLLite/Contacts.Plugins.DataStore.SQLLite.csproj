@@ -22,4 +22,8 @@
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.6" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Contacts.UseCases\Contacts.UseCases.csproj" />
+	</ItemGroup>
+	
 </Project>
