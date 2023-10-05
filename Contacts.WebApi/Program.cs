@@ -22,6 +22,18 @@ app.MapGet("/api/contacts", async (ApplicationDbContext db) =>
     return Results.Ok(contacts);
 });
 
+//  Get Single Contact
+app.MapGet("/api/contacts/{id}", async (int id, ApplicationDbContext db) =>
+{
+    var singleContact = await db.Contacts.FindAsync(id);
+
+    if (singleContact != null)
+    {
+        return Results.Ok(singleContact);
+    }
+
+    return Results.NotFound();
+});
 
 //  Post Contacts Endpoint
 app.MapPost("/api/contacts", async (Contact contact, ApplicationDbContext db) =>
