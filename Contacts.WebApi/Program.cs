@@ -1,6 +1,7 @@
 using Contacts.WebApi;
 using Contacts.WebApi.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,10 +16,19 @@ var app = builder.Build();
 
 //app.UseHttpsRedirection();  // If we try to access web API with HTTP it redirect to HTTPS
 
-//  Get Contacts Endpoint
-app.MapGet("/api/contacts", async (ApplicationDbContext db) =>
+//  Get Contacts Endpoint / Search Contacts Endpoint
+app.MapGet("/api/contacts", async ([FromQuery]string? s, ApplicationDbContext db) =>
 {
-    var contacts = await db.Contacts.ToListAsync();
+    List<Contact> contacts;
+
+    if (string.IsNullOrWhiteSpace(s))
+        contacts = await db.Contacts.ToListAsync();
+    else
+        contacts = await db.Contacts.Where(x =>
+        !string.IsNullOrWhiteSpace(x.Name) && x.Name.ToLower().IndexOf(s.ToLower()) >= 0 ||
+        !string.IsNullOrWhiteSpace(x.Email) && x.Email.ToLower().IndexOf(s.ToLower()) >= 0 ||
+        !string.IsNullOrWhiteSpace(x.Address) && x.Address.ToLower().IndexOf(s.ToLower()) >= 0 ||
+        !string.IsNullOrWhiteSpace(x.Phone) && x.Phone.ToLower().IndexOf(s.ToLower()) >= 0).ToListAsync();
     return Results.Ok(contacts);
 });
 
