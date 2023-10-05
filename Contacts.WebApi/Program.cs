@@ -1,5 +1,6 @@
 using Contacts.WebApi;
 using Contacts.WebApi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,21 @@ app.MapPut("/api/contacts/{id}", async (int id, Contact contact, ApplicationDbCo
 
     //return Results.Ok(contactToUpdate);
     return Results.NoContent();
+});
+
+//  Delete Contact Endpoint
+app.MapDelete("api/contacts/{id}", async (int id, ApplicationDbContext db) =>
+{
+    var contactToDelete = await db.Contacts.FindAsync(id);
+
+    if (contactToDelete != null)
+    {
+        db.Contacts.Remove(contactToDelete);
+        await db.SaveChangesAsync();
+        return Results.Ok(contactToDelete);
+    }
+
+    return Results.NotFound();
 });
 
 app.Run();
