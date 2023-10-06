@@ -5,7 +5,7 @@
              xmlns:m="clr-namespace:Contacts.CoreBusiness;assembly=Contacts.CoreBusiness"
              x:DataType="vm:ContactsViewModel"
              x:Class="Contacts.Views_MVVM.Contacts_MVVM_Page"
-             Title="Contacts_MVVM_Page">
+             Title="Contacts">
 
     <Grid
     Padding="5"
@@ -32,16 +32,22 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem Text="Delete"
+                                           IconImageSource=""
                                            IsDestructive="True"
                                            BackgroundColor="Red" 
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.DeleteContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
+                               
+                            </SwipeView.RightItems>
+
+                            <SwipeView.LeftItems>
                                 <SwipeItem Text="Edit"
                                            IsDestructive="False"
                                            BackgroundColor="Green"
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.GotoEditContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
-                            </SwipeView.RightItems>
+                            </SwipeView.LeftItems>
+                            
                             <StackLayout>
                                 <Frame Margin="0,5,0,5">
                                     <StackLayout Orientation="Vertical" Spacing="5">
