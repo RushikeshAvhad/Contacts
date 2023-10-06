@@ -19,7 +19,7 @@
             Grid.Column="0"
             Placeholder="Search Contact"
             Text="{Binding FilterText}"/>
-        
+
         <CollectionView
             x:Name="ContactsCollection"
             ItemsSource="{Binding Contacts}"
@@ -29,31 +29,53 @@
                 <DataTemplate x:DataType="m:Contact">
                     <StackLayout>
                         
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItem IconImageSource="delete.svg"
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem IconImageSource="delete.svg"
                                            IsDestructive="True"
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.DeleteContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
-                                </SwipeView.RightItems>
-
-                                <SwipeView.LeftItems>
-                                    <SwipeItem IconImageSource="edit.svg"
+                            </SwipeView.RightItems>
+                            
+                            <SwipeView.LeftItems>
+                                <SwipeItem IconImageSource="edit.svg"
                                            IsDestructive="False"
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.GotoEditContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
-                                </SwipeView.LeftItems>
-
-                                <StackLayout>
-                                    <Frame Margin="0,5,5,5" BorderColor="Black">
-                                    <StackLayout Orientation="Vertical" Spacing="5">
-                                        <Label Text="{Binding Name}" />
-                                        <Label Text="{Binding Email}" />
-                                    </StackLayout>
+                            </SwipeView.LeftItems>
+                                
+                            <StackLayout>
+                                    <Frame Margin="0,5,0,5" BorderColor="Black">
+                                        <StackLayout Orientation="Vertical" Spacing="5">
+                                            <Label Text="{Binding Name}" />
+                                            <Label Text="{Binding Email}" />
+                                            
+                                            <StackLayout Orientation="Horizontal" Spacing="10" >
+                                                <Label Text="Call" 
+                                                       TextColor="Green"
+                                                       FontAttributes="Bold">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer 
+                                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.CallCommand}"
+                                                            CommandParameter="{Binding Phone}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                
+                                                <Label Text="Mail" 
+                                                       TextColor="DarkRed"
+                                                       FontAttributes="Bold">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer 
+                                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.MailCommand}"
+                                                            CommandParameter="{Binding Email}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </StackLayout>
+                                        </StackLayout>
                                     </Frame>
-                                </StackLayout>
-                            </SwipeView>
-
+                            </StackLayout>
+                        </SwipeView>
+                        
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -63,7 +85,7 @@
             Grid.Row="2"
             Grid.Column="0"
             Text="Add Contact"
-            Command="{Binding GotoAddContactCommand}"/>
+            Command="{Binding GotoAddContactCommand}"/> 
         
     </Grid>
     

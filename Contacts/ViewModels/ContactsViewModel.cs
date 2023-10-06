@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -80,6 +81,34 @@ namespace Contacts.ViewModels
         public async Task GotoAddContact()
         {
             await Shell.Current.GoToAsync(nameof(AddContactPage_MVVM));
+        }
+
+        [RelayCommand]
+        public async Task Call(string phoneNumber)
+        {
+            try
+            {
+                await Launcher.OpenAsync(new Uri($"tel:{phoneNumber}"));
+            }
+            catch (Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
+            }
+            await LoadContactsAsync();
+        }
+
+        [RelayCommand]
+        public async Task Mail(string email)
+        {
+            try
+            {
+                await Launcher.OpenAsync(new Uri($"mailto:{email}"));
+            }
+            catch (Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
+            }
+            await LoadContactsAsync();
         }
     }
 }
