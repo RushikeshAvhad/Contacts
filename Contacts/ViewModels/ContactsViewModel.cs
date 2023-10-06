@@ -58,8 +58,16 @@ namespace Contacts.ViewModels
         [RelayCommand]
         public async Task DeleteContact(int contactId)
         {
-            await _deleteContactUseCase.ExecuteAsync(contactId);
-            await LoadContactsAsync();
+            bool deleteConfirmed = await Application.Current.MainPage.DisplayAlert("Delete Confirmation", "Are you sure you want to delete this contact?", "Yes", "No");
+            if (deleteConfirmed)
+            {
+                await _deleteContactUseCase.ExecuteAsync(contactId);
+                await LoadContactsAsync();
+            }
+            else
+            {
+                await LoadContactsAsync();
+            }
         }
 
         [RelayCommand]

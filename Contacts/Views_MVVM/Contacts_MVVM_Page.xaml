@@ -8,10 +8,10 @@
              Title="Contacts">
 
     <Grid
-    Padding="5"
-    RowDefinitions="50, *, 50"
-    ColumnDefinitions="*"
-    RowSpacing="5">
+        Padding="5"
+        RowDefinitions="50, *, 50"
+        ColumnDefinitions="*"
+        RowSpacing="5">
         
         <SearchBar 
             x:Name="SearchBar"
@@ -28,35 +28,31 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Contact">
                     <StackLayout>
-
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItem Text="Delete"
-                                           IconImageSource=""
+                        
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItem IconImageSource="delete.svg"
                                            IsDestructive="True"
-                                           BackgroundColor="Red" 
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.DeleteContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
-                               
-                            </SwipeView.RightItems>
+                                </SwipeView.RightItems>
 
-                            <SwipeView.LeftItems>
-                                <SwipeItem Text="Edit"
+                                <SwipeView.LeftItems>
+                                    <SwipeItem IconImageSource="edit.svg"
                                            IsDestructive="False"
-                                           BackgroundColor="Green"
                                            Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.GotoEditContactCommand}"
                                            CommandParameter="{Binding ContactId}"/>
-                            </SwipeView.LeftItems>
-                            
-                            <StackLayout>
-                                <Frame Margin="0,5,0,5">
+                                </SwipeView.LeftItems>
+
+                                <StackLayout>
+                                    <Frame Margin="0,5,5,5" BorderColor="Black">
                                     <StackLayout Orientation="Vertical" Spacing="5">
                                         <Label Text="{Binding Name}" />
                                         <Label Text="{Binding Email}" />
                                     </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </SwipeView>
+                                    </Frame>
+                                </StackLayout>
+                            </SwipeView>
 
                     </StackLayout>
                 </DataTemplate>
