@@ -49,4 +49,32 @@ public partial class ContactControl_MVVM : ContentPage
 
         return regex.IsMatch(email);
     }
+
+    private void MobileEntry_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        // MobileEntry
+        string mobileNumber = e.NewTextValue;
+
+        bool isValid = IsMobileNumberValid(mobileNumber);
+
+        if (isValid)
+        {
+            MobileEntry.TextColor = Color.FromRgb(0, 255, 0);
+        }
+        else
+        {
+            MobileEntry.TextColor = Color.FromRgb(255, 0, 0);
+        }
+    }
+
+    private bool IsMobileNumberValid(string mobileNumber)
+    {
+        if (string.IsNullOrWhiteSpace((mobileNumber)))
+            return false;
+
+        string mobilePattern = @"^[0-9]{10}$";
+        Regex regex = new Regex(mobilePattern);
+
+        return regex.IsMatch(mobileNumber);
+    }
 }

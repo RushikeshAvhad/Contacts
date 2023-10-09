@@ -61,7 +61,11 @@
                     Text="Phone"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <Entry Text="{Binding Contact.Phone}" VerticalOptions="Center" />
+                <Entry
+                    x:Name="MobileEntry"
+                    Text="{Binding Contact.Phone}"
+                    VerticalOptions="Center" 
+                    TextChanged="MobileEntry_OnTextChanged"/>
             </HorizontalStackLayout>
         </Frame>
 
