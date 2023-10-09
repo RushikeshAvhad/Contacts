@@ -22,6 +22,7 @@ public partial class AddContactPage : ContentPage
             Email = contactCtrl.Email,
             Address = contactCtrl.Address,
             Phone = contactCtrl.Phone
+            //ImagePath = contactCtrl.ImagePath
         });
 
         await Shell.Current.GoToAsync("..");

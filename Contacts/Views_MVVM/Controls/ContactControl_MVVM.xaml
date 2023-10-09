@@ -11,7 +11,7 @@
 
         <Frame>
             <VerticalStackLayout Spacing="2">
-                <Image x:Name="photo" Source="Call.svg" HeightRequest="150" WidthRequest="150"/>
+                <Image x:Name="photo" Source="{Binding Contact.ImagePath}" HeightRequest="150" WidthRequest="150"/>
                 <Button Text="Select Image" Clicked="OnSelectImageClicked"/>
             </VerticalStackLayout>
 

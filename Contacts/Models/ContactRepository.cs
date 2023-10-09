@@ -29,7 +29,8 @@ namespace Contacts.Models
                     Name = contact.Name,
                     Address = contact.Address,
                     Email = contact.Email,
-                    Phone = contact.Phone
+                    Phone = contact.Phone,
+                    ImagePath = contact.ImagePath
                 };
             }
 
@@ -47,6 +48,7 @@ namespace Contacts.Models
                 contactToUpdate.Email = contact.Email;
                 contactToUpdate.Name = contact.Name;
                 contactToUpdate.Phone = contact.Phone;
+                contactToUpdate.ImagePath = contact.ImagePath;
             }
         }
 
@@ -82,6 +84,11 @@ namespace Contacts.Models
 
             if (contacts == null || contacts.Count <= 0)
                 contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.Address) && x.Address.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToList();
+            else
+                return contacts;
+
+            if (contacts == null || contacts.Count <= 0)
+                contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.ImagePath) && x.ImagePath.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToList();
             else
                 return contacts;
 

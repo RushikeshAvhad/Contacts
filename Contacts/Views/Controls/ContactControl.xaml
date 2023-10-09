@@ -7,6 +7,15 @@
 
     <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
 
+
+        <Frame>
+            <VerticalStackLayout Spacing="2">
+                <Image 
+                    HeightRequest="150" WidthRequest="150"/>
+                <Button Text="Select Image"/>
+            </VerticalStackLayout>
+        </Frame>
+
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
                 <Label
@@ -32,8 +41,8 @@
                     WidthRequest="60" />
                 <Entry
                     x:Name="entryEmail"
-                    TextChanged="EntryEmail_OnTextChanged"
                     VerticalOptions="Center">
+                    <!--TextChanged="EntryEmail_OnTextChanged"-->
                     <Entry.Behaviors>
                         <toolkit:MultiValidationBehavior x:Name="emailValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged">
                             <toolkit:TextValidationBehavior

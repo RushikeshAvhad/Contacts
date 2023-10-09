@@ -49,7 +49,8 @@ namespace Contacts.Plugins.DataStore.InMemory
                     Address = contact.Address,
                     Email = contact.Email,
                     Name = contact.Name,
-                    Phone = contact.Phone
+                    Phone = contact.Phone,
+                    ImagePath = contact.ImagePath
                 });
             }
             return null;
@@ -79,6 +80,11 @@ namespace Contacts.Plugins.DataStore.InMemory
             else
                 return Task.FromResult(contacts);
 
+            if (contacts == null || contacts.Count <= 0)
+                contacts = _contacts.Where(x => !string.IsNullOrWhiteSpace(x.ImagePath) && x.ImagePath.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToList();
+            else
+                return Task.FromResult(contacts);
+
             return Task.FromResult(contacts);
         }
 
@@ -93,6 +99,7 @@ namespace Contacts.Plugins.DataStore.InMemory
                 contactToUpdate.Email = contact.Email;
                 contactToUpdate.Name = contact.Name;
                 contactToUpdate.Phone = contact.Phone;
+                contactToUpdate.ImagePath = contact.ImagePath;
             }
 
             return Task.CompletedTask;

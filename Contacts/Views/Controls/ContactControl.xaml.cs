@@ -61,6 +61,18 @@ public partial class ContactControl : ContentView
         }
     }
 
+    //public string ImagePath
+    //{
+    //    get
+    //    {
+    //        return entryPhone.Text;
+    //    }
+    //    set
+    //    {
+    //        entryPhone.Text = value;
+    //    }
+    //}
+
     private void btnSave_Clicked(object sender, EventArgs e)
     {
         if (nameValidator.IsNotValid)
@@ -87,34 +99,31 @@ public partial class ContactControl : ContentView
         OnCancel?.Invoke(sender, e);
     }
 
+    //private void EntryEmail_OnTextChanged(object sender, TextChangedEventArgs e)
+    //{
+    //    string email = e.NewTextValue;
 
+    //    bool isValid = IsEmailValid(email);
 
+    //    if (isValid)
+    //    {
+    //        entryEmail.TextColor = Color.FromRgb(0, 255, 0);
+    //    }
+    //    else
+    //    {
+    //        entryEmail.TextColor = Color.FromRgb(255, 0, 0);
+    //    }
+    //}
 
-    private void EntryEmail_OnTextChanged(object sender, TextChangedEventArgs e)
-    {
-        string email = e.NewTextValue;
+    //// Regular expression for basic email validation.
+    //private bool IsEmailValid(string email)
+    //{
+    //    if (string.IsNullOrWhiteSpace(email))
+    //        return false;
 
-        bool isValid = IsEmailValid(email);
+    //    string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
+    //    Regex regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
-        if (isValid)
-        {
-            entryEmail.TextColor = Color.FromRgb(0, 255, 0);
-        }
-        else
-        {
-            entryEmail.TextColor = Color.FromRgb(255, 0, 0);
-        }
-    }
-
-    // Regular expression for basic email validation.
-    private bool IsEmailValid(string email)
-    {
-        if (string.IsNullOrWhiteSpace(email))
-            return false;
-
-        string emailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
-        Regex regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
-
-        return regex.IsMatch(email);
-    }
+    //    return regex.IsMatch(email);
+    //}
 }

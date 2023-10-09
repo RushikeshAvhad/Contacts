@@ -42,7 +42,9 @@ namespace Contacts.Plugins.DataStore.SQLLite
                         WHERE 
                             Name LIKE ? OR 
                             Email LIKE ? OR
-                            Phone LIKE ?",
+                            Phone LIKE ? OR
+                            ImagePath LIKE ?",
+                            $"{filterText}%",
                             $"{filterText}%",
                             $"{filterText}%",
                             $"{filterText}%");

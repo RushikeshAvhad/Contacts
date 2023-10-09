@@ -38,6 +38,7 @@ public partial class EditContactPage : ContentPage
                 contactCtrl.Address = contact.Address;
                 contactCtrl.Email = contact.Email;
                 contactCtrl.Phone = contact.Phone;
+                //contactCtrl.ImagePath = contact.ImagePath;
             }
         }
     }
@@ -48,6 +49,7 @@ public partial class EditContactPage : ContentPage
         contact.Address = contactCtrl.Address;
         contact.Email = contactCtrl.Email;
         contact.Phone = contactCtrl.Phone;
+        //contact.ImagePath = contactCtrl.ImagePath;
 
         //ContactRepository.UpdateContact(contact.ContactId, contact);
         await _editContactUseCase.ExecuteAsync(contact.ContactId, contact);
