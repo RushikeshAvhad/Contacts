@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contacts.Views.ContactsPage"
-             Title="Contacts">
+<ContentPage
+    x:Class="Contacts.Views.ContactsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Contacts">
 
     <Grid
         Padding="5"
-        RowDefinitions="50, *, 50, 50"
         ColumnDefinitions="*"
+        RowDefinitions="50, *, 50, 50"
         RowSpacing="5">
-        <SearchBar 
+        <SearchBar
             x:Name="SearchBar"
             Grid.Row="0"
             Grid.Column="0"
             Placeholder="Search Contact"
-            TextChanged="SearchBar_TextChanged"/>
-        <ListView 
+            TextChanged="SearchBar_TextChanged" />
+        <ListView
+            x:Name="listContacts"
             Grid.Row="1"
             Grid.Column="0"
-            x:Name="listContacts"
             BackgroundColor="Transparent"
-            SeparatorColor="Silver"
-            SeparatorVisibility="Default"
-            RowHeight="65"
             ItemSelected="listContacts_ItemSelected"
-            ItemTapped="listContacts_ItemTapped">
+            ItemTapped="listContacts_ItemTapped"
+            RowHeight="65"
+            SeparatorColor="Silver"
+            SeparatorVisibility="Default">
             <ListView.ItemTemplate>
-                <DataTemplate >
-                    <TextCell 
-                        Text="{Binding Name}" 
-                        Detail="{Binding Email}">
+                <DataTemplate>
+                    <TextCell Detail="{Binding Email}" Text="{Binding Name}">
                         <TextCell.ContextActions>
-                            <MenuItem 
-                                Text="Delete" 
-                                IsDestructive="True"
+                            <MenuItem
                                 Clicked="Delete_Clicked"
-                                CommandParameter="{Binding .}">                                
-                            </MenuItem>
+                                CommandParameter="{Binding .}"
+                                IsDestructive="True"
+                                Text="Delete" />
                         </TextCell.ContextActions>
                     </TextCell>
                 </DataTemplate>
@@ -44,19 +42,19 @@
         </ListView>
 
         <Button
+            x:Name="btnAdd"
             Grid.Row="2"
             Grid.Column="0"
-            x:Name="btnAdd"
-            Text="Add Contact"
-            Clicked="btnAdd_Clicked" />
+            Clicked="btnAdd_Clicked"
+            Text="Add Contact" />
 
         <Button
+            x:Name="btnTest"
             Grid.Row="3"
             Grid.Column="0"
-            x:Name="btnTest"
-            Text="Test"
-            Clicked="btnTest_Clicked"/>
+            Clicked="btnTest_Clicked"
+            Text="Test" />
     </Grid>
-   
-    
+
+
 </ContentPage>

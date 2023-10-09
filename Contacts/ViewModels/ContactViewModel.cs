@@ -84,7 +84,7 @@ namespace Contacts.ViewModels
 
             if (!IsEmailProvided)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Emial is required", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error", "Email is required", "Ok");
                 return false;
             }
 

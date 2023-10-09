@@ -1,62 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Contacts.Views.Controls.ContactControl">
+<ContentView
+    x:Class="Contacts.Views.Controls.ContactControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <VerticalStackLayout Spacing="10" Margin="20, 20, 20, 0">
+    <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
 
-        <Frame Padding="10, 2 ,10, 2">
+        <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
-                <Label Text="Name" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Label
+                    Text="Name"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
                 <Entry x:Name="entryName" VerticalOptions="Center">
                     <Entry.Behaviors>
-                        <toolkit:TextValidationBehavior 
-                        x:Name="nameValidator"
-                        Flags="ValidateOnAttaching,ValidateOnValueChanged"
-                        MinimumLength="1"/>
+                        <toolkit:TextValidationBehavior
+                            x:Name="nameValidator"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            MinimumLength="1" />
                     </Entry.Behaviors>
                 </Entry>
             </HorizontalStackLayout>
         </Frame>
 
-        <Frame Padding="10, 2 ,10, 2">
+        <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
-                <Label Text="Email" VerticalOptions="Center" WidthRequest="60"></Label>
-                <Entry x:Name="entryEmail" VerticalOptions="Center">
+                <Label
+                    Text="Email"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+                <Entry
+                    x:Name="entryEmail"
+                    TextChanged="EntryEmail_OnTextChanged"
+                    VerticalOptions="Center">
                     <Entry.Behaviors>
-                        <toolkit:MultiValidationBehavior
-                        x:Name="emailValidator"
-                        Flags="ValidateOnAttaching,ValidateOnValueChanged">
-                            <toolkit:TextValidationBehavior 
-                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
-                            MinimumLength="1"
-                            toolkit:MultiValidationBehavior.Error="Email is required."/>
-                            <toolkit:EmailValidationBehavior
-                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
-                            toolkit:MultiValidationBehavior.Error="Email format is invalid"/>
+                        <toolkit:MultiValidationBehavior x:Name="emailValidator" Flags="ValidateOnAttaching,ValidateOnValueChanged">
+                            <toolkit:TextValidationBehavior
+                                toolkit:MultiValidationBehavior.Error="Email is required."
+                                Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                                MinimumLength="1" />
+                            <toolkit:EmailValidationBehavior toolkit:MultiValidationBehavior.Error="Email format is invalid" Flags="ValidateOnAttaching,ValidateOnValueChanged" />
                         </toolkit:MultiValidationBehavior>
                     </Entry.Behaviors>
                 </Entry>
             </HorizontalStackLayout>
         </Frame>
 
-        <Frame Padding="10, 2 ,10, 2">
+        <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
-                <Label Text="Phone" VerticalOptions="Center" WidthRequest="60"></Label>
-                <Entry x:Name="entryPhone" VerticalOptions="Center"></Entry>
+                <Label
+                    Text="Phone"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+                <Entry x:Name="entryPhone" VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
-        <Frame Padding="10, 2 ,10, 2">
+        <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
-                <Label Text="Address" VerticalOptions="Center" WidthRequest="60"></Label>
-                <Entry x:Name="entryAddress" VerticalOptions="Center"></Entry>
+                <Label
+                    Text="Address"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+                <Entry x:Name="entryAddress" VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
-        <Button x:Name="btnSave" Text="Save" Clicked="btnSave_Clicked"/>
-        <Button x:Name="btnCancel" Text="Cancel" Clicked="btnCancel_Clicked"/>
+        <Button
+            x:Name="btnSave"
+            Clicked="btnSave_Clicked"
+            Text="Save" />
+        <Button
+            x:Name="btnCancel"
+            Clicked="btnCancel_Clicked"
+            Text="Cancel" />
 
     </VerticalStackLayout>
 
