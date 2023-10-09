@@ -28,7 +28,8 @@ app.MapGet("/api/contacts", async ([FromQuery]string? s, ApplicationDbContext db
         !string.IsNullOrWhiteSpace(x.Name) && x.Name.ToLower().IndexOf(s.ToLower()) >= 0 ||
         !string.IsNullOrWhiteSpace(x.Email) && x.Email.ToLower().IndexOf(s.ToLower()) >= 0 ||
         !string.IsNullOrWhiteSpace(x.Address) && x.Address.ToLower().IndexOf(s.ToLower()) >= 0 ||
-        !string.IsNullOrWhiteSpace(x.Phone) && x.Phone.ToLower().IndexOf(s.ToLower()) >= 0).ToListAsync();
+        !string.IsNullOrWhiteSpace(x.Phone) && x.Phone.ToLower().IndexOf(s.ToLower()) >= 0 ||
+        !string.IsNullOrWhiteSpace(x.ImagePath) && x.ImagePath.ToLower().IndexOf(s.ToLower()) >= 0).ToListAsync();
     return Results.Ok(contacts);
 });
 
@@ -64,6 +65,7 @@ app.MapPut("/api/contacts/{id}", async (int id, Contact contact, ApplicationDbCo
     contactToUpdate.Email = contact.Email;
     contactToUpdate.Phone = contact.Phone;
     contactToUpdate.Address = contact.Address;
+    contactToUpdate.ImagePath = contact.ImagePath;
     
     await db.SaveChangesAsync();
 
