@@ -10,7 +10,11 @@
     <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
 
         <Frame>
-            <Image Source="Call.svg"/>
+            <VerticalStackLayout Spacing="2">
+                <Image x:Name="photo" Source="Call.svg" HeightRequest="150" WidthRequest="150"/>
+                <Button Text="Select Image" Clicked="OnSelectImageClicked"/>
+            </VerticalStackLayout>
+
         </Frame>
 
         <Frame Padding="10,2,10,2">

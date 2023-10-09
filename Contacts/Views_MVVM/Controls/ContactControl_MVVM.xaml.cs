@@ -77,4 +77,21 @@ public partial class ContactControl_MVVM : ContentPage
 
         return regex.IsMatch(mobileNumber);
     }
+
+    public async void OnSelectImageClicked(object sender, EventArgs e)
+    {
+        var result = await MediaPicker.PickPhotoAsync();
+        if (result != null)
+        {
+            var stream = await result.OpenReadAsync();
+            byte[] imageData;
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                imageData = memoryStream.ToArray();
+            }
+            ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+            photo.Source = imageSource;
+        }
+    }
 }
