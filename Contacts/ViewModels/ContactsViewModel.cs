@@ -85,36 +85,8 @@ namespace Contacts.ViewModels
             await Shell.Current.GoToAsync(nameof(AddContactPage_MVVM));
         }
 
-        [RelayCommand]
-        public async Task Call(string phoneNumber)
-        {
-            try
-            {
-                await Launcher.OpenAsync(new Uri($"tel:{phoneNumber}"));
-            }
-            catch (Exception e)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
-            }
-            await LoadContactsAsync();
-        }
-
-        [RelayCommand]
-        public async Task Mail(string email)
-        {
-            try
-            {
-                await Launcher.OpenAsync(new Uri($"mailto:{email}"));
-            }
-            catch (Exception e)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
-            }
-            await LoadContactsAsync();
-        }
-
-
-        #region Press 2 Second On Frame to redirect to Call Or Mail
+        
+        #region Press 1 Second On Frame to redirect to Call Or Mail
 
         private DateTime _tapStartTime;
 
@@ -128,10 +100,11 @@ namespace Contacts.ViewModels
             }
 
             var duration = DateTime.Now - _tapStartTime;
-            if (duration.TotalMilliseconds >= 2000)
+            if (duration.TotalMilliseconds >= 1000)
             {
+                var name = contact.Name;
                 string action = await Application.Current.MainPage.DisplayActionSheet(
-                    "Select Action",
+                    $"{name}",
                     "Cancel",
                     null,
                     "Call",

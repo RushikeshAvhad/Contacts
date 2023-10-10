@@ -50,34 +50,15 @@
                                     IsDestructive="False" />
                             </SwipeView.LeftItems>
 
-                            <Frame Margin="2,5,5,5" BorderColor="Black">
+                            <Frame Margin="2,5,5,5" BorderColor="DarkBlue">
+
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                        Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.TappedFrameCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.TappedFrameCommand}" CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
+
                                 <StackLayout Orientation="Vertical" Spacing="5">
                                     <Label Text="{Binding Name}" />
                                     <Label Text="{Binding Email}" />
-
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            Text="Call"
-                                            TextColor="Green">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.CallCommand}" CommandParameter="{Binding Phone}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-
-                                        <Label
-                                            FontAttributes="Bold"
-                                            Text="Mail"
-                                            TextColor="DarkRed">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.MailCommand}" CommandParameter="{Binding Email}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </StackLayout>
                                 </StackLayout>
 
                             </Frame>
