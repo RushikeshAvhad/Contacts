@@ -14,12 +14,14 @@
                 <Image
                     x:Name="photo"
                     HeightRequest="150"
-                    Source="{Binding SelectedImageSource}"
+                    Source="{Binding Contact.ImagePath}"
                     WidthRequest="250" />
-                    <!--Source="{Binding Contact.ImagePath}"-->
-                <!--<Button Clicked="OnSelectImageClicked" Text="Select Image" />-->
+                    <!--Source="{Binding SelectedImageSource}"-->
+
+                <Button Clicked="OnSelectImageClicked" Text="Select Image" />
                 <!--<Button Text="Select Image" Command="{Binding SelectImageCommand}" CommandParameter="{Binding Contact.ImagePath}"/>-->
-                <Button Text="Select Image" Command="{Binding SelectImageCommand}"/>
+                <!--<Button Text="Select Image" Command="{Binding SelectImageCommand}"/>-->
+                <!--<Button Text="Select Image" Command="{Binding ChooseOrTakePhotoCommand}"/>-->
             </VerticalStackLayout>
 
         </Frame>

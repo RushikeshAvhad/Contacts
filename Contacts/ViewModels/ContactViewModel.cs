@@ -155,5 +155,71 @@ namespace Contacts.ViewModels
 
             return true;
         }
+
+
+        #region Select Image from gallery or take photo
+
+        //private ICommand _chooseOrTakePhotoCommand;
+
+        //public ICommand ChooseOrTakePhotoCommand
+        //{
+        //    get
+        //    {
+        //        if (_chooseOrTakePhotoCommand == null)
+        //        {
+        //            _chooseOrTakePhotoCommand = new Command(ExecuteChooseOrTakePhotoCommand);
+        //        }
+        //        return _chooseOrTakePhotoCommand;
+        //    }
+        //}
+
+        //private async void ExecuteChooseOrTakePhotoCommand()
+        //{
+        //    try
+        //    {
+        //        // Display an action sheet to let the user choose between Gallery and Camera
+        //        string action = await Application.Current.MainPage.DisplayActionSheet(
+        //            "Select or Take Photo",
+        //            "Cancel",
+        //            null,
+        //            "Choose from Gallery",
+        //            "Take Photo");
+
+        //        MediaFile photoFile = null;
+
+        //        if (action == "Choose from Gallery")
+        //        {
+        //            // Pick a photo from the gallery
+        //            var result = await MediaPicker.PickPhotoAsync();
+        //            if (result != null)
+        //            {
+        //                photoFile = result;
+        //            }
+        //        }
+        //        else if (action == "Take Photo")
+        //        {
+        //            // Take a new photo using the device's camera
+        //            var request = new MediaCaptureRequest(MediaCaptureOptions.Photo)
+        //            {
+        //                AllowCropping = false,
+        //                CompressionQuality = 90
+        //            };
+        //            photoFile = await MediaCapture.CaptureAsync(request);
+        //        }
+
+        //        // Handle the selected/taken photo (e.g., display it or save it)
+        //        if (photoFile != null)
+        //        {
+        //            // Do something with the photo file (e.g., display it, save it, etc.)
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle any exceptions that might occur during photo selection or capture
+        //        Console.WriteLine($"Error: {ex.Message}");
+        //    }
+        //}
+
+        #endregion
     }
 }

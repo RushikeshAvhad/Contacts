@@ -78,20 +78,55 @@ public partial class ContactControl_MVVM : ContentPage
         return regex.IsMatch(mobileNumber);
     }
 
-    //public async void OnSelectImageClicked(object sender, EventArgs e)
-    //{
-    //    var result = await MediaPicker.PickPhotoAsync();
-    //    if (result != null)
-    //    {
-    //        var stream = await result.OpenReadAsync();
-    //        byte[] imageData;
-    //        using (var memoryStream = new MemoryStream())
-    //        {
-    //            await stream.CopyToAsync(memoryStream);
-    //            imageData = memoryStream.ToArray();
-    //        }
-    //        ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
-    //        photo.Source = imageSource;
-    //    }
-    //}
+    public async void OnSelectImageClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            string action = await DisplayActionSheet(
+                "Select or Take Photo",
+                "Cancel",
+                null,
+                "Choose from Gallery",
+                "Take Photo");
+
+            FileResult result = null;
+
+            if (action == "Choose from Gallery")
+            {
+                result = await MediaPicker.PickPhotoAsync();
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+                    byte[] imageData;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        imageData = memoryStream.ToArray();
+                    }
+                    ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+                    photo.Source = imageSource;
+                }
+            }
+            else if (action == "Take Photo")
+            {
+                result = await MediaPicker.Default.CapturePhotoAsync();
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+                    byte[] imageData;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(memoryStream);
+                        imageData = memoryStream.ToArray();
+                    }
+                    ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+                    photo.Source = imageSource;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "Ok");
+        }
+    }
 }
