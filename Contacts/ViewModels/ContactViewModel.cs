@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -73,6 +74,64 @@ namespace Contacts.ViewModels
         {
             await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
         }
+
+
+        private ICommand _selectImageCommand;
+        private ImageSource _selectImageSource;
+
+        public ICommand SelectImageCommand
+        {
+            get
+            {
+                if (_selectImageCommand == null)
+                {
+                    _selectImageCommand = new Command(ExecuteSelectImageCommand);
+                }
+
+                return _selectImageCommand;
+            }
+        }
+
+        public ImageSource SelectedImageSource
+        {
+            get { return _selectImageSource; }
+            set
+            {
+                if (_selectImageSource != value)
+                {
+                    _selectImageSource = value;
+                    OnPropertyChanged(nameof(SelectedImageSource));
+                }
+            }
+        }
+
+        private async void ExecuteSelectImageCommand()
+        {
+            var result = await MediaPicker.PickPhotoAsync();
+            if (result != null)
+            {
+                SelectedImageSource = ImageSource.FromFile(result.FullPath);
+            }
+        }
+
+        //[RelayCommand]
+        //public async Task SelectImage(string ImagePath)
+        //{
+        //    var result = await MediaPicker.PickPhotoAsync();
+        //    if (result != null)
+        //    {
+        //        var stream = await result.OpenReadAsync();
+        //        byte[] imageData;
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            await stream.CopyToAsync(memoryStream);
+        //            imageData = memoryStream.ToArray();
+        //        }
+        //        ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
+        //        _imagePath = imageSource.ToString();
+                
+        //    }
+        //}
 
         private async Task<bool> ValidateContact()
         {

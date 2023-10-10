@@ -14,9 +14,11 @@
                 <Image
                     x:Name="photo"
                     HeightRequest="150"
-                    Source="{Binding Contact.ImagePath}"
+                    Source="{Binding SelectedImageSource}"
                     WidthRequest="250" />
-                <Button Clicked="OnSelectImageClicked" Text="Select Image" />
+                    <!--Source="{Binding Contact.ImagePath}"-->
+                <!--<Button Clicked="OnSelectImageClicked" Text="Select Image" />-->
+                <Button Text="Select Image" Command="{Binding SelectImageCommand}" CommandParameter="{Binding Contact.ImagePath}"/>
             </VerticalStackLayout>
 
         </Frame>
@@ -49,7 +51,7 @@
                     WidthRequest="60" />
                 <Entry
                     x:Name="emailEntry"
-                    Placeholder="Email Here"
+                    Placeholder="Add Email address"
                     Text="{Binding Contact.Email}"
                     TextChanged="EmailEntry_OnTextChanged"
                     VerticalOptions="Center">
@@ -79,7 +81,7 @@
                     WidthRequest="60" />
                 <Entry
                     x:Name="MobileEntry"
-                    Placeholder="Mobile Number Here"
+                    Placeholder="Add 10 digit Mobile Number"
                     Text="{Binding Contact.Phone}"
                     TextChanged="MobileEntry_OnTextChanged"
                     VerticalOptions="Center" />
