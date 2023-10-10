@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
+using Microsoft.Maui.ApplicationModel.Communication;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static SQLite.SQLite3;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -110,5 +112,62 @@ namespace Contacts.ViewModels
             }
             await LoadContactsAsync();
         }
+
+
+        #region Press 2 Second On Frame to redirect to Call Or Mail
+
+        private DateTime _tapStartTime;
+
+        [RelayCommand]
+        public async Task TappedFrame(Contact contact)
+        {
+            if (_tapStartTime == DateTime.MinValue)
+            {
+                _tapStartTime = DateTime.Now;
+                return;
+            }
+
+            var duration = DateTime.Now - _tapStartTime;
+            if (duration.TotalMilliseconds >= 2000)
+            {
+                string action = await Application.Current.MainPage.DisplayActionSheet(
+                    "Select Action",
+                    "Cancel",
+                    null,
+                    "Call",
+                    "Mail");
+
+
+                if (action == "Call")
+                {
+                    var phoneNumber = contact.Phone;
+                    try
+                    {
+                        await Launcher.OpenAsync(new Uri($"tel:{phoneNumber}"));
+                    }
+                    catch (Exception e)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
+                    }
+                    await LoadContactsAsync();
+                }
+                else if (action == "Mail")
+                {
+                    try
+                    {
+                        await Launcher.OpenAsync(new Uri($"mailto:{contact.Email}"));
+                    }
+                    catch (Exception e)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", $"{e}", "OK");
+                    }
+                    await LoadContactsAsync();
+                }
+            }
+
+            _tapStartTime = DateTime.MinValue;
+        }
+
+        #endregion
     }
 }

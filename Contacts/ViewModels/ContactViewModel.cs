@@ -75,7 +75,8 @@ namespace Contacts.ViewModels
             await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
         }
 
-
+        
+        #region Select Image Using Command
         private ICommand _selectImageCommand;
         private ImageSource _selectImageSource;
 
@@ -129,9 +130,11 @@ namespace Contacts.ViewModels
         //        }
         //        ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
         //        _imagePath = imageSource.ToString();
-                
+
         //    }
         //}
+
+        #endregion
 
         private async Task<bool> ValidateContact()
         {

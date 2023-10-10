@@ -51,7 +51,10 @@
                             </SwipeView.LeftItems>
 
                             <Frame Margin="2,5,5,5" BorderColor="Black">
-
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.TappedFrameCommand}" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                                 <StackLayout Orientation="Vertical" Spacing="5">
                                     <Label Text="{Binding Name}" />
                                     <Label Text="{Binding Email}" />
