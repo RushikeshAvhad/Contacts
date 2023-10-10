@@ -30,26 +30,27 @@
                 <DataTemplate x:DataType="m:Contact">
                     <StackLayout>
 
-                        <Frame Margin="2,5,5,5" BorderColor="Black">
+                        <SwipeView>
 
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItem
-                                        BackgroundColor="Red"
-                                        Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.DeleteContactCommand}"
-                                        CommandParameter="{Binding ContactId}"
-                                        IconImageSource="deletetrans.png"
-                                        IsDestructive="True" />
-                                </SwipeView.RightItems>
+                            <SwipeView.RightItems>
+                                <SwipeItem
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.DeleteContactCommand}"
+                                    CommandParameter="{Binding ContactId}"
+                                    IconImageSource="deletetrans.png"
+                                    IsDestructive="True" />
+                            </SwipeView.RightItems>
 
-                                <SwipeView.LeftItems>
-                                    <SwipeItem
-                                        BackgroundColor="Green"
-                                        Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.GotoEditContactCommand}"
-                                        CommandParameter="{Binding ContactId}"
-                                        IconImageSource="edit.svg"
-                                        IsDestructive="False" />
-                                </SwipeView.LeftItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItem
+                                    BackgroundColor="Green"
+                                    Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.GotoEditContactCommand}"
+                                    CommandParameter="{Binding ContactId}"
+                                    IconImageSource="edit.svg"
+                                    IsDestructive="False" />
+                            </SwipeView.LeftItems>
+
+                            <Frame Margin="2,5,5,5" BorderColor="Black">
 
                                 <StackLayout Orientation="Vertical" Spacing="5">
                                     <Label Text="{Binding Name}" />
@@ -76,8 +77,9 @@
                                     </StackLayout>
                                 </StackLayout>
 
-                            </SwipeView>
-                        </Frame>
+                            </Frame>
+
+                        </SwipeView>
 
                     </StackLayout>
                 </DataTemplate>

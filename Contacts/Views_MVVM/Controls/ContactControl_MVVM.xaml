@@ -18,7 +18,8 @@
                     WidthRequest="250" />
                     <!--Source="{Binding Contact.ImagePath}"-->
                 <!--<Button Clicked="OnSelectImageClicked" Text="Select Image" />-->
-                <Button Text="Select Image" Command="{Binding SelectImageCommand}" CommandParameter="{Binding Contact.ImagePath}"/>
+                <!--<Button Text="Select Image" Command="{Binding SelectImageCommand}" CommandParameter="{Binding Contact.ImagePath}"/>-->
+                <Button Text="Select Image" Command="{Binding SelectImageCommand}"/>
             </VerticalStackLayout>
 
         </Frame>
