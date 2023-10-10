@@ -11,8 +11,12 @@
 
         <Frame>
             <VerticalStackLayout Spacing="2">
-                <Image x:Name="photo" Source="{Binding Contact.ImagePath}" HeightRequest="150" WidthRequest="150"/>
-                <Button Text="Select Image" Clicked="OnSelectImageClicked"/>
+                <Image
+                    x:Name="photo"
+                    HeightRequest="150"
+                    Source="{Binding Contact.ImagePath}"
+                    WidthRequest="250" />
+                <Button Clicked="OnSelectImageClicked" Text="Select Image" />
             </VerticalStackLayout>
 
         </Frame>
@@ -21,9 +25,10 @@
             <HorizontalStackLayout>
                 <Label
                     Text="Name"
+                    TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <Entry Text="{Binding Contact.Name}" VerticalOptions="Center">
+                <Entry Text="{Binding Contact.Name}" TextColor="Black" VerticalOptions="Center">
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior
                             x:Name="nameValidator"
@@ -39,10 +44,12 @@
             <HorizontalStackLayout>
                 <Label
                     Text="Email"
+                    TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
                     x:Name="emailEntry"
+                    Placeholder="Email Here"
                     Text="{Binding Contact.Email}"
                     TextChanged="EmailEntry_OnTextChanged"
                     VerticalOptions="Center">
@@ -67,13 +74,15 @@
             <HorizontalStackLayout>
                 <Label
                     Text="Phone"
+                    TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
                     x:Name="MobileEntry"
+                    Placeholder="Mobile Number Here"
                     Text="{Binding Contact.Phone}"
-                    VerticalOptions="Center" 
-                    TextChanged="MobileEntry_OnTextChanged"/>
+                    TextChanged="MobileEntry_OnTextChanged"
+                    VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
@@ -81,9 +90,10 @@
             <HorizontalStackLayout>
                 <Label
                     Text="Address"
+                    TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <Entry Text="{Binding Contact.Address}" VerticalOptions="Center" />
+                <Entry Text="{Binding Contact.Address}" TextColor="Black" VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
