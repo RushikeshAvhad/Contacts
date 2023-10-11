@@ -5,10 +5,12 @@ using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static SQLite.SQLite3;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -75,64 +77,77 @@ namespace Contacts.ViewModels
             await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
         }
 
-        
+
         #region Select Image Using Command
-        private ICommand _selectImageCommand;
-        private ImageSource _selectImageSource;
 
-        public ICommand SelectImageCommand
-        {
-            get
-            {
-                if (_selectImageCommand == null)
-                {
-                    _selectImageCommand = new Command(ExecuteSelectImageCommand);
-                }
+        //private ImageSource _selectedImage;
+        //public ICommand SelectImageCommand => new Command(SelectImage);
 
-                return _selectImageCommand;
-            }
-        }
-
-        public ImageSource SelectedImageSource
-        {
-            get { return _selectImageSource; }
-            set
-            {
-                if (_selectImageSource != value)
-                {
-                    _selectImageSource = value;
-                    OnPropertyChanged(nameof(SelectedImageSource));
-                }
-            }
-        }
-
-        private async void ExecuteSelectImageCommand()
-        {
-            var result = await MediaPicker.PickPhotoAsync();
-            if (result != null)
-            {
-                SelectedImageSource = ImageSource.FromFile(result.FullPath);
-            }
-        }
-
-        //[RelayCommand]
-        //public async Task SelectImage(string ImagePath)
+        //public ImageSource SelectedImage
         //{
-        //    var result = await MediaPicker.PickPhotoAsync();
-        //    if (result != null)
+        //    get { return _selectedImage; }
+        //    set
         //    {
-        //        var stream = await result.OpenReadAsync();
-        //        byte[] imageData;
-        //        using (var memoryStream = new MemoryStream())
-        //        {
-        //            await stream.CopyToAsync(memoryStream);
-        //            imageData = memoryStream.ToArray();
-        //        }
-        //        ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(imageData));
-        //        _imagePath = imageSource.ToString();
-
+        //        _selectedImage = value;
+        //        OnPropertyChanged();
         //    }
         //}
+
+        //public async void SelectImage()
+        //{
+        //    try
+        //    {
+        //        var file = await MediaPicker.PickPhotoAsync();
+        //        if (file != null)
+        //        {
+        //            SelectedImage = ImageSource.FromFile(file.FullPath);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        throw;
+        //    }
+        //}
+        #endregion
+
+        #region Select Image Using Command & Image Source = Contact.ImagePath
+
+        private string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                if (_imagePath != value)
+                {
+                    _imagePath = value;
+                    OnPropertyChanged(nameof(ImagePath));
+                } 
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ICommand ChangeImageCommand => new Command(async () =>
+        {
+            await OnSelectImage();
+        });
+
+        public async Task OnSelectImage()
+        {
+            var file = await MediaPicker.PickPhotoAsync();
+            if (file != null)
+            {
+                Contact.ImagePath = (ImageSource.FromFile(file.FullPath)).ToString();
+            }
+        }
 
         #endregion
 

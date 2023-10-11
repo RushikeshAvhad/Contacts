@@ -9,22 +9,38 @@
 
     <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
 
-        <Frame>
+        <!--#region Select Image Using Event -->
+
+        <!--<Frame>
             <VerticalStackLayout Spacing="2">
                 <Image
                     x:Name="photo"
                     HeightRequest="150"
                     Source="{Binding Contact.ImagePath}"
                     WidthRequest="250" />
-                    <!--Source="{Binding SelectedImageSource}"-->
 
                 <Button Clicked="OnSelectImageClicked" Text="Select Image" />
-                <!--<Button Text="Select Image" Command="{Binding SelectImageCommand}" CommandParameter="{Binding Contact.ImagePath}"/>-->
-                <!--<Button Text="Select Image" Command="{Binding SelectImageCommand}"/>-->
-                <!--<Button Text="Select Image" Command="{Binding ChooseOrTakePhotoCommand}"/>-->
             </VerticalStackLayout>
+        </Frame>-->
 
+        <!--#endregion-->
+
+
+        <!--#region Select Image Using Command in ContactViewModel -->
+        <Frame>
+            <VerticalStackLayout Spacing="2">
+
+
+                <Image x:Name="photo"
+                       HeightRequest="150"
+                       Source="{Binding Contact.ImagePath}"
+                       WidthRequest="250" />
+                <Button Text="Select Image" Command="{Binding ChangeImageCommand}"/>
+
+            </VerticalStackLayout>
         </Frame>
+        <!--#endregion-->
+
 
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
