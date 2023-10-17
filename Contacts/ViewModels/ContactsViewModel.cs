@@ -2,15 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
-using Microsoft.Maui.ApplicationModel.Communication;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using static SQLite.SQLite3;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -27,8 +19,8 @@ namespace Contacts.ViewModels
         public string FilterText
         {
             get { return filterText; }
-            set 
-            { 
+            set
+            {
                 filterText = value;
                 LoadContactsAsync(filterText);
             }
@@ -85,7 +77,7 @@ namespace Contacts.ViewModels
             await Shell.Current.GoToAsync(nameof(AddContactPage_MVVM));
         }
 
-        
+
         #region Press 1 Second On Frame to redirect to Call Or Mail
 
         private DateTime _tapStartTime;

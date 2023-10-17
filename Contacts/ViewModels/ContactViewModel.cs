@@ -1,16 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Contacts.Models;
 using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using static SQLite.SQLite3;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
@@ -77,7 +70,7 @@ namespace Contacts.ViewModels
             await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
         }
 
-        
+
         #region Select Image Using Command & Image Source = Contact.ImagePath
 
         private string _imagePath;
@@ -91,7 +84,7 @@ namespace Contacts.ViewModels
                 {
                     _imagePath = value;
                     OnPropertyChanged(nameof(ImagePath));
-                } 
+                }
             }
         }
 
@@ -120,7 +113,7 @@ namespace Contacts.ViewModels
 
                 FileResult result = null;
 
-                if (action == "Choose from Gallery")
+                if (action == "Gallery")
                 {
                     result = await MediaPicker.PickPhotoAsync();
                     if (result != null)
@@ -128,7 +121,7 @@ namespace Contacts.ViewModels
                         Contact.ImagePath = (ImageSource.FromFile(result.FullPath)).ToString();
                     }
                 }
-                else if (action == "Take Photo")
+                else if (action == "Camera")
                 {
                     result = await MediaPicker.Default.CapturePhotoAsync();
                     if (result != null)
@@ -139,7 +132,7 @@ namespace Contacts.ViewModels
             }
             catch (Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
