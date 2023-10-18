@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
-using System.ComponentModel;
 using System.Windows.Input;
 using Contact = Contacts.CoreBusiness.Contact;
 
@@ -73,28 +72,6 @@ namespace Contacts.ViewModels
 
         #region Select Image Using Command & Image Source = Contact.ImagePath
 
-        private string _imagePath;
-
-        public string ImagePath
-        {
-            get { return _imagePath; }
-            set
-            {
-                if (_imagePath != value)
-                {
-                    _imagePath = value;
-                    OnPropertyChanged(nameof(ImagePath));
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public ICommand ChangeImageCommand => new Command(async () =>
         {
             await OnSelectImage();
@@ -119,6 +96,8 @@ namespace Contacts.ViewModels
                     if (result != null)
                     {
                         Contact.ImagePath = (ImageSource.FromFile(result.FullPath)).ToString();
+                        await Application.Current.MainPage.DisplayAlert("Message",
+                            "Your Image will update next time", "OK");
                     }
                 }
                 else if (action == "Camera")

@@ -9,8 +9,7 @@
 
     <VerticalStackLayout Margin="20,20,20,0" Spacing="10">
 
-        <!--#region Select Image Using Event -->
-
+        <!--#region Select Image Using Event-->
         <!--<Frame>
             <VerticalStackLayout Spacing="2">
                 <Image
@@ -22,21 +21,18 @@
                 <Button Clicked="OnSelectImageClicked" Text="Select Image" />
             </VerticalStackLayout>
         </Frame>-->
-
         <!--#endregion-->
 
 
-        <!--#region Select Image Using Command in ContactViewModel -->
+        <!--#region Select Image Using Command in ContactViewModel-->
         <Frame>
             <VerticalStackLayout Spacing="2">
-
-
-                <Image x:Name="photo"
-                       HeightRequest="150"
-                       Source="{Binding Contact.ImagePath}"
-                       WidthRequest="250" />
-                <Button Text="Select Image" Command="{Binding ChangeImageCommand}"/>
-
+                <Image
+                    x:Name="photo"
+                    HeightRequest="150"
+                    Source="{Binding Contact.ImagePath}"
+                    WidthRequest="250" />
+                <Button Command="{Binding ChangeImageCommand}" Text="Select Image" />
             </VerticalStackLayout>
         </Frame>
         <!--#endregion-->
@@ -49,7 +45,10 @@
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <Entry Text="{Binding Contact.Name}" TextColor="Black" VerticalOptions="Center">
+                <Entry
+                    Text="{Binding Contact.Name}"
+                    TextColor="Black"
+                    VerticalOptions="Center">
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior
                             x:Name="nameValidator"
@@ -114,7 +113,10 @@
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <Entry Text="{Binding Contact.Address}" TextColor="Black" VerticalOptions="Center" />
+                <Entry
+                    Text="{Binding Contact.Address}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
