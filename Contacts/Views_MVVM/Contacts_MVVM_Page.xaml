@@ -59,13 +59,14 @@
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Border StrokeShape="RoundRectangle 30,30,30,30" StrokeThickness="0">
                                         <Image
+                                            BackgroundColor="Black"
                                             HeightRequest="75"
                                             Source="{Binding ImagePath}"
                                             WidthRequest="75" />
                                     </Border>
 
                                     <StackLayout Orientation="Vertical" Spacing="5">
-                                        <Label Text="{Binding Name}" />
+                                        <Label FontAttributes="Bold" Text="{Binding Name}" />
                                         <Label Text="{Binding Email}" />
                                     </StackLayout>
                                 </StackLayout>
@@ -82,9 +83,15 @@
         <Button
             Grid.Row="2"
             Grid.Column="0"
+            BackgroundColor="#FF7FFF00"
             Command="{Binding GotoAddContactCommand}"
-            Text="Add Contact" />
-
+            CornerRadius="35"
+            FontAttributes="Bold"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="Add Contact"
+            TextColor="#101216"
+            VerticalOptions="Center" />
     </Grid>
 
 </ContentPage>

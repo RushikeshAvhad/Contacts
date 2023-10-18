@@ -25,14 +25,23 @@
 
 
         <!--#region Select Image Using Command in ContactViewModel-->
-        <Frame>
-            <VerticalStackLayout Spacing="2">
-                <Image
-                    x:Name="photo"
-                    HeightRequest="150"
-                    Source="{Binding Contact.ImagePath}"
-                    WidthRequest="250" />
-                <Button Command="{Binding ChangeImageCommand}" Text="Select Image" />
+        <Frame BackgroundColor="#FF778899">
+            <VerticalStackLayout Spacing="5">
+                <Border
+                    BackgroundColor="#FF778899"
+                    StrokeShape="RoundRectangle 20,20,20,20"
+                    StrokeThickness="0">
+                    <Image
+                        x:Name="photo"
+                        HeightRequest="200"
+                        Source="{Binding Contact.ImagePath}"
+                        WidthRequest="250" />
+                </Border>
+                <Button
+                    Command="{Binding ChangeImageCommand}"
+                    CornerRadius="25"
+                    FontAttributes="Bold"
+                    Text="Select Image" />
             </VerticalStackLayout>
         </Frame>
         <!--#endregion-->
@@ -41,11 +50,13 @@
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
                 <Label
+                    FontAttributes="Bold"
                     Text="Name"
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
+                    FontAttributes="Bold"
                     Text="{Binding Contact.Name}"
                     TextColor="Black"
                     VerticalOptions="Center">
@@ -63,12 +74,14 @@
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
                 <Label
+                    FontAttributes="Bold"
                     Text="Email"
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
                     x:Name="emailEntry"
+                    FontAttributes="Bold"
                     Placeholder="Add Email address"
                     Text="{Binding Contact.Email}"
                     TextChanged="EmailEntry_OnTextChanged"
@@ -93,12 +106,14 @@
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
                 <Label
+                    FontAttributes="Bold"
                     Text="Phone"
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
                     x:Name="MobileEntry"
+                    FontAttributes="Bold"
                     Placeholder="Add 10 digit Mobile Number"
                     Text="{Binding Contact.Phone}"
                     TextChanged="MobileEntry_OnTextChanged"
@@ -109,19 +124,32 @@
         <Frame Padding="10,2,10,2">
             <HorizontalStackLayout>
                 <Label
+                    FontAttributes="Bold"
                     Text="Address"
                     TextColor="Black"
                     VerticalOptions="Center"
                     WidthRequest="60" />
                 <Entry
+                    FontAttributes="Bold"
                     Text="{Binding Contact.Address}"
                     TextColor="Black"
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
 
-        <Button x:Name="btnSave" Text="Save" />
-        <Button Command="{Binding BackToContactsCommand}" Text="Cancel" />
+        <Button
+            x:Name="btnSave"
+            BackgroundColor="#FF008000"
+            CornerRadius="25"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="Save" />
+        <Button
+            Command="{Binding BackToContactsCommand}"
+            CornerRadius="25"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="Cancel" />
 
     </VerticalStackLayout>
 
