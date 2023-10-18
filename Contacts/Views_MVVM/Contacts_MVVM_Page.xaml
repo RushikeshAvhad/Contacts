@@ -56,9 +56,18 @@
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference ContactsCollection}, Path=BindingContext.TappedFrameCommand}" CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
 
-                                <StackLayout Orientation="Vertical" Spacing="5">
-                                    <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Email}" />
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Border StrokeShape="RoundRectangle 30,30,30,30" StrokeThickness="0">
+                                        <Image
+                                            HeightRequest="75"
+                                            Source="{Binding ImagePath}"
+                                            WidthRequest="75" />
+                                    </Border>
+
+                                    <StackLayout Orientation="Vertical" Spacing="5">
+                                        <Label Text="{Binding Name}" />
+                                        <Label Text="{Binding Email}" />
+                                    </StackLayout>
                                 </StackLayout>
 
                             </Frame>
