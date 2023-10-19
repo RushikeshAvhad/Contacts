@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-using Contacts.Plugins.DataStore.InMemory;
+using Contacts.Plugins.DataStore.WebApi;
 using Contacts.UseCases;
 using Contacts.UseCases.Interfaces;
 using Contacts.UseCases.PluginInterfaces;
@@ -7,8 +7,6 @@ using Contacts.ViewModels;
 using Contacts.Views;
 using Contacts.Views_MVVM;
 using Microsoft.Extensions.Logging;
-using Contacts.Plugins.DataStore.SQLLite;
-using Contacts.Plugins.DataStore.WebApi;
 
 namespace Contacts
 {
@@ -28,10 +26,10 @@ namespace Contacts
             builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
+            //builder.Services.AddSingleton<IContactRepository, ContactInMemoryRepository>();
             //builder.Services.AddSingleton<IContactRepository, ContactSQLiteRepository>();
             builder.Services.AddSingleton<IContactRepository, ContactWebApiRepository>();
             builder.Services.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>();
@@ -39,7 +37,7 @@ namespace Contacts
             builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();
             builder.Services.AddTransient<IAddContactUseCase, AddContactUseCase>();
             builder.Services.AddTransient<IDeleteContactUseCase, DeleteContactUseCase>();
-            
+
             builder.Services.AddSingleton<ContactsViewModel>();
             builder.Services.AddSingleton<ContactViewModel>();
 

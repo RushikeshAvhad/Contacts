@@ -2,12 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using Contacts.UseCases.Interfaces;
 using Contacts.Views_MVVM;
+using System.ComponentModel;
 using System.Windows.Input;
 using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.ViewModels
 {
-    public partial class ContactViewModel : ObservableObject
+    public partial class ContactViewModel : ObservableObject, INotifyPropertyChanged
     {
         private Contact _contact;
         private readonly IViewContactUseCase _viewContactUseCase;
@@ -32,7 +33,7 @@ namespace Contacts.ViewModels
             IEditContactUseCase editContactUseCase,
             IAddContactUseCase addContactUseCase)
         {
-            Contact = new Contact();
+            //Contact = new Contact();
             _viewContactUseCase = viewContactUseCase;
             _editContactUseCase = editContactUseCase;
             _addContactUseCase = addContactUseCase;
@@ -95,9 +96,9 @@ namespace Contacts.ViewModels
                     result = await MediaPicker.PickPhotoAsync();
                     if (result != null)
                     {
-                        Contact.ImagePath = (ImageSource.FromFile(result.FullPath)).ToString();
-                        await Application.Current.MainPage.DisplayAlert("Message",
-                            "Your Image will update next time", "OK");
+                        string filePath = Convert.ToString(ImageSource.FromFile(result.FullPath));
+                        string textValue = filePath.Replace("File: ", null);
+                        Contact.ImagePath = textValue;
                     }
                 }
                 else if (action == "Camera")
@@ -105,7 +106,9 @@ namespace Contacts.ViewModels
                     result = await MediaPicker.Default.CapturePhotoAsync();
                     if (result != null)
                     {
-                        Contact.ImagePath = (ImageSource.FromFile(result.FullPath)).ToString();
+                        string filePath = (ImageSource.FromFile(result.FullPath)).ToString();
+                        string textValue = filePath.Replace("File: ", null);
+                        Contact.ImagePath = textValue;
                     }
                 }
             }

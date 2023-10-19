@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.Plugins.DataStore.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.Plugins.DataStore.SQLLite", "Plugins\Contacts.Plugins.DataStore.SQLLite\Contacts.Plugins.DataStore.SQLLite.csproj", "{2543FA64-5AB4-4818-BC17-D5A584EE46B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.WebApi", "Contacts.WebApi\Contacts.WebApi.csproj", "{56106406-B192-404B-9E05-EB52EF01FB4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.WebApi", "Contacts.WebApi\Contacts.WebApi.csproj", "{56106406-B192-404B-9E05-EB52EF01FB4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Plugins.DataStore.WebApi", "Plugins\Contacts.Plugins.DataStore.WebApi\Contacts.Plugins.DataStore.WebApi.csproj", "{42792F36-55C6-467D-A0B0-45207F2A1ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.Plugins.DataStore.WebApi", "Plugins\Contacts.Plugins.DataStore.WebApi\Contacts.Plugins.DataStore.WebApi.csproj", "{42792F36-55C6-467D-A0B0-45207F2A1ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

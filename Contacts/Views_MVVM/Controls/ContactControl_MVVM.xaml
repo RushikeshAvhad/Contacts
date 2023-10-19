@@ -34,7 +34,7 @@
                     <Image
                         x:Name="photo"
                         HeightRequest="200"
-                        Source="{Binding Contact.ImagePath}"
+                        Source="{Binding Contact.ImagePath, Mode=TwoWay}"
                         WidthRequest="250" />
                 </Border>
                 <Button
